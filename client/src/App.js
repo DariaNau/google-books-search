@@ -1,11 +1,27 @@
 import React from 'react';
 import './App.css';
+import SearchView from './pages/Search'
+import Saved from './pages/Saved'
+import NotFound from './pages/NotFound'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
+    <Router>
     <div>
-      hello
+      <Switch>
+        <Route exact path={["/", "/books"]}>
+          <SearchView />
+        </Route>
+        <Route exact path="/books/:id">
+          {/* <Saved /> */}
+        </Route>
+        <Route>
+          <NotFound />
+        </Route>
+      </Switch>
     </div>
+  </Router>
   );
 }
 
