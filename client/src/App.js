@@ -13,8 +13,8 @@ function App() {
         <Route exact path={["/", "/books"]}>
           <SearchView />
         </Route>
-        <Route exact path="/books/:id">
-          {/* <Saved /> */}
+        <Route exact path="/saved">
+          <Saved />
         </Route>
         <Route>
           <NotFound />
@@ -26,3 +26,18 @@ function App() {
 }
 
 export default App;
+
+{/* <Router>
+<div>
+  <StoreProvider>
+    <Nav />
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/home" component={Home} />
+      <Route exact path="/favorites" component={FavoritesList} />
+      <Route exact path="/posts/:id" component={Detail} />
+      <Route component={NoMatch} />
+    </Switch>
+  </StoreProvider>
+</div>
+</Router> */}
