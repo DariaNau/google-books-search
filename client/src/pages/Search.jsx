@@ -45,7 +45,6 @@ export default function SearchView() {
         // console.log(res.data.items)
         // mapping to get only relevant data from the call
       const mappedRes = res.data.items.map((apiData) => ({
-
       title: apiData.volumeInfo.title,
       authors: apiData.volumeInfo.authors,
       description: apiData.volumeInfo.description,
@@ -57,6 +56,13 @@ export default function SearchView() {
       })
       .catch((err) => console.log(err));
   };
+
+  const saveBook = (event) => {
+    event.preventDefault();
+    API.saveBook({})
+      .then(res => console.log("book to save"))
+      .catch(err => console.log(err));
+  }
 
 
   const classes = useStyles();
@@ -102,7 +108,7 @@ export default function SearchView() {
             />
           </Container>
         </div>
-        <CardGrid results={books} />
+        <CardGrid onClick={saveBook} results={books} />
       </main>
       <Footer className={classes.footer} />
     </React.Fragment>

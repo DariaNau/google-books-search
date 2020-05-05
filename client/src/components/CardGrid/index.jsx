@@ -3,7 +3,6 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
@@ -15,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(8),
   },
   card: {
+    margin: "5%",
     height: "auto",
     display: "flex",
     flexDirection: "column",
@@ -29,8 +29,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [0];
-
 export default function CardGrid(props) {
   const books = props.results;
   // console.log(books)
@@ -38,11 +36,9 @@ export default function CardGrid(props) {
 
   return (
     <Container className={classes.cardGrid} maxWidth="md">
-      {/* End hero unit */}
-      <Grid container spacing={4}>
-        {cards.map((card) => (
-         <Grid item xs={12} sm={6} md={4}> 
+      <Grid container spacing={24}>
         {books.map((book, i) => (
+         <Grid item md={4}> 
           <Card className={classes.card} key={i + "card"}>
             <img
               className={classes.cardMedia}
@@ -77,9 +73,8 @@ export default function CardGrid(props) {
               </Button>
             </CardActions>
           </Card>
-        ))}
         </Grid>
-        ))} 
+        ))}
       </Grid>
     </Container>
   );
