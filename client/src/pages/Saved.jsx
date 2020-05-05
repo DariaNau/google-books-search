@@ -6,8 +6,8 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Footer from "../components/Footer"
-import CardGrid from "../components/CardGrid"
+import Footer from "../components/Footer";
+import CardGrid from "../components/CardGrid";
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -33,20 +33,16 @@ export default function SavedView() {
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="lg">
-          <div className={classes.heroButtons}>
+            <div className={classes.heroButtons}>
               <Grid container spacing={4} justify="center">
                 <Grid item>
-                <Link to="saved">
-                  <Button variant="contained" color="primary">
-                  My books
-                  </Button>
+                  <Link to="saved">
+                    <Button variant="contained">My books</Button>
                   </Link>
                 </Grid>
                 <Grid item>
-                <Link to="">
-                  <Button variant="outlined" color="primary">
-                    Explore
-                  </Button>
+                  <Link to="">
+                    <Button variant="outlined">Explore</Button>
                   </Link>
                 </Grid>
               </Grid>
@@ -57,14 +53,13 @@ export default function SavedView() {
               color="textSecondary"
               paragraph
             >
-              Saved books
+              “So many books, so little time.” ― Frank Zappa
             </Typography>
-            {/* <SearchBar /> */}
           </Container>
         </div>
         <CardGrid />
       </main>
-      <Footer className={classes.footer}/>
+      <Footer className={classes.footer} />
     </React.Fragment>
   );
 }

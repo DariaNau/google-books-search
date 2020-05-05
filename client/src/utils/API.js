@@ -1,11 +1,13 @@
 import axios from "axios";
 import APIKEY from 'dotenv'
 const BASEURL = "https://www.googleapis.com/books/v1/volumes?q=";
+const PARAMS = "+intitle:"
 
 export default {
   // Google Books API Call
   search: function(query) {
-    return axios.get(BASEURL + query + APIKEY);
+    console.log(query)
+    return axios.get(BASEURL + query + PARAMS + query + APIKEY);
   },
   // Saves a book to the database
   saveBook: function(data) {

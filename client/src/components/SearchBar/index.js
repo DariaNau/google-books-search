@@ -2,54 +2,40 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import SearchIcon from "@material-ui/icons/Search";
+import IconButton from '@material-ui/core/IconButton';
 
 export default function SearchBar(props) {
   return (
-    <div style={{ maxWidth: "50%", margin: "0 auto" }}>
-      <Autocomplete
+    <div style={{ margin: "0 auto", display: "flex", justifyContent: "center", alignContent: "center"}}>
+      {/* <Autocomplete
+      style={{ width: "50%", display: "inline-block", verticalAlign: "middle"}}
         freeSolo
         id="free-solo-2-demo"
         disableClearable
-        options={top100Films.map((option) => option.title)}
-        renderInput={(params) => (
+        options={top100Books.map((option) => option.title)}
+        renderInput={(params) => ( */}
           <TextField
-          {...props}
-            // name="search"
-            // onClick={props.handleFormSubmit}
-            {...params}
-            label="Search input"
+            {...props}
+            // {...params}
+            label="Search books"
             margin="normal"
             variant="outlined"
-            InputProps={{ ...params.InputProps, type: "search" }}
+            // InputProps={{ ...params.InputProps, type: "search" }
+          
           />
-        )}
-      />
+        {/* )} */}
+      {/* /> */}
+        <IconButton {...props} style={{ display: "inline-block", verticalAlign: "middle"}}>
+        <SearchIcon fontSize="large" />
+      </IconButton>
     </div>
   );
 }
 
-{
-  /* <form>
-<div className="form-group">
-  <label htmlFor="search">Search:</label>
-  <input
-    onChange={props.handleInputChange}
-    value={props.value}
-    name="search"
-    type="text"
-    className="form-control"
-    placeholder="Search For a Movie"
-    id="search"
-  />
-  <br />
-  <button onClick={props.handleFormSubmit} className="btn btn-primary">
-    Search
-  </button>
-</div>
-</form> */
-}
+
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const top100Films = [
+const top100Books = [
   { title: "The Shawshank Redemption", year: 1994 },
   { title: "The Godfather", year: 1972 },
   { title: "The Godfather: Part II", year: 1974 },

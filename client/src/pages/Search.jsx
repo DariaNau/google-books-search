@@ -7,10 +7,9 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import SearchBar from "../components/SearchBar";
-import Footer from "../components/Footer"
-import CardGrid from "../components/CardGrid"
-
-import API from "../utils/API"
+import Footer from "../components/Footer";
+import CardGrid from "../components/CardGrid";
+import API from "../utils/API";
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -23,15 +22,14 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
-  },
+  }
 }));
 
 export default function SearchView() {
-  
   const [books, setBooks] = useState([]);
   const [bookSearch, setBookSearch] = useState("");
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     // Destructure the name and value properties off of event.target
     // Update the appropriate state
     const { value } = event.target;
@@ -39,16 +37,27 @@ export default function SearchView() {
     // console.log(value)
   };
 
-  const handleFormSubmit = event => {
-    // When the form is submitted, prevent its default behavior, get recipes update the recipes state
+  const handleFormSubmit = (event) => {
+    // When the form is submitted, prevent its default behavior, get books update the books state
     event.preventDefault();
     API.search(bookSearch)
-      .then(res => 
-        console.log(res.data)
-        // setBooks(res.data)
-        )
-      .catch(err => console.log(err));
+      .then((res) => {
+        // console.log(res.data.items)
+        // mapping to get only relevant data from the call
+      const mappedRes = res.data.items.map((apiData) => ({
+
+      title: apiData.volumeInfo.title,
+      authors: apiData.volumeInfo.authors,
+      description: apiData.volumeInfo.description,
+      image: apiData.volumeInfo.imageLinks,
+      link: apiData.volumeInfo.previewLink
+      }))
+      console.log(mappedRes)
+      setBooks(mappedRes)
+      })
+      .catch((err) => console.log(err));
   };
+
 
   const classes = useStyles();
 
@@ -59,20 +68,20 @@ export default function SearchView() {
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="lg">
-          <div className={classes.heroButtons}>
+            <div className={classes.heroButtons}>
               <Grid container spacing={4} justify="center">
                 <Grid item>
-                <Link to="saved">
-                  <Button variant="contained" color="primary">
-                  My books
-                  </Button>
+                  <Link to="saved">
+                    <Button variant="outlined">
+                      My books
+                    </Button>
                   </Link>
                 </Grid>
                 <Grid item>
-                <Link to="">
-                  <Button variant="outlined" color="primary">
-                    Explore
-                  </Button>
+                  <Link to="">
+                    <Button variant="contained">
+                      Explore
+                    </Button>
                   </Link>
                 </Grid>
               </Grid>
@@ -83,24 +92,21 @@ export default function SearchView() {
               color="textSecondary"
               paragraph
             >
-              “Always go too far, because that’s where you’ll find the truth” ~ Albert Camus
+              “Always go too far, because that’s where you’ll find the truth.” ― Albert Camus
             </Typography>
-            <SearchBar 
-            name="BookSearch"
-            value={bookSearch}
-            onChange={handleInputChange}
+            <SearchBar
+              name="BookSearch"
+              value={bookSearch}
+              onChange={handleInputChange}
+              onClick={handleFormSubmit}
             />
-                        <Button
-                      onClick={handleFormSubmit}
-
-                    >
-                        Search
-                    </Button>
           </Container>
         </div>
-        <CardGrid />
+        <CardGrid results={books} />
       </main>
-      <Footer className={classes.footer}/>
+      <Footer className={classes.footer} />
     </React.Fragment>
   );
 }
+
+
