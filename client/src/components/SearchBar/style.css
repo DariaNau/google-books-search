@@ -1,0 +1,13 @@
+.search {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.searchTerm {
+    margin: 0 auto;
+    width: 100%;
+    padding: 10px;
+    height: 10%;
+    outline: none;
+    color: #9DBFAF;
+}

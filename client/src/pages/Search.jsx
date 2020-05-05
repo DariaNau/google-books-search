@@ -57,13 +57,12 @@ export default function SearchView() {
       .catch((err) => console.log(err));
   };
 
-  const saveBook = (event) => {
-    event.preventDefault();
-    API.saveBook({})
-      .then(res => console.log("book to save"))
-      .catch(err => console.log(err));
-  }
-
+  // const saveBook = (event) => {
+  //   event.preventDefault();
+  //   API.saveBook({})
+  //     .then(res => console.log("book to save"))
+  //     .catch(err => console.log(err));
+  // }
 
   const classes = useStyles();
 
@@ -108,7 +107,7 @@ export default function SearchView() {
             />
           </Container>
         </div>
-        <CardGrid onClick={saveBook} results={books} />
+        <CardGrid results={books} />
       </main>
       <Footer className={classes.footer} />
     </React.Fragment>
