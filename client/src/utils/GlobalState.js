@@ -1,9 +1,9 @@
 import React, { createContext, useReducer, useContext } from "react";
 import {
-  SET_CURRENT_POST,
-  REMOVE_POST,
-  UPDATE_POSTS,
-  ADD_POST,
+  SET_CURRENT_BOOK,
+  REMOVE_BOOK,
+  UPDATE_BOOKS,
+  ADD_BOOK,
   ADD_FAVORITE,
   UPDATE_FAVORITES,
   REMOVE_FAVORITE,
@@ -15,39 +15,39 @@ const { Provider } = StoreContext;
 
 const reducer = (state, action) => {
   switch (action.type) {
-  case SET_CURRENT_POST:
+  case SET_CURRENT_BOOK:
     return {
       ...state,
-      currentPost: action.post,
+      currentBOOK: action.BOOK,
       loading: false
     };
 
-  case UPDATE_POSTS:
+  case UPDATE_BOOKS:
     return {
       ...state,
-      posts: [...action.posts],
+      BOOKs: [...action.BOOKs],
       loading: false
     };
 
-  case ADD_POST:
+  case ADD_BOOK:
     return {
       ...state,
-      posts: [action.post, ...state.posts],
+      BOOKs: [action.BOOK, ...state.BOOKs],
       loading: false
     };
 
-  case REMOVE_POST:
+  case REMOVE_BOOK:
     return {
       ...state,
-      posts: state.posts.filter((post) => {
-        return post._id !== action._id; 
+      BOOKs: state.BOOKs.filter((BOOK) => {
+        return BOOK._id !== action._id; 
       })
     };
 
   case ADD_FAVORITE:
     return {
       ...state,
-      favorites: [action.post, ...state.favorites],
+      favorites: [action.BOOK, ...state.favorites],
       loading: false
     };
 
@@ -61,8 +61,8 @@ const reducer = (state, action) => {
   case REMOVE_FAVORITE:
     return {
       ...state,
-      favorites: state.favorites.filter((post) => {
-        return post._id !== action._id; 
+      favorites: state.favorites.filter((BOOK) => {
+        return BOOK._id !== action._id; 
       })
     };
 
@@ -76,25 +76,3 @@ const reducer = (state, action) => {
     return state;
   }
 };
-
-const StoreProvider = ({ value = [], ...props }) => {
-  const [state, dispatch] = useReducer(reducer, {
-    posts: [],
-    currentPost: {
-      _id: 0,
-      title: "",
-      body: "",
-      author: ""
-    },
-    favorites: [],
-    loading: false
-  });
-
-  return <Provider value={[state, dispatch]} {...props} />;
-};
-
-const useStoreContext = () => {
-  return useContext(StoreContext);
-};
-
-export { StoreProvider, useStoreContext };
